@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>saeed| </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  <style>
+
+    body {
+      background-color:moccasin;
+      color: orangered;font-size:20px}
+
+    #about-col > p, #about-col > form{}
+
+    #gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #about-col .form-control, #about-col .btn {
+      border-radius: 0;
+    }
+
+    #about-col label {
+      font-weight: bold;
+      color: blueviolet;
+    }
+
+    #preview-container {
+      position: fixed;
+      z-index: 1;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.47);
+      display: none;
+      text-align: center;
+      overflow-y: scroll;
+      justify-content: center;
+      align-content: center;
+    }
+
+    #preview-container > img{
+      max-width: 90%;
+
+    }
+  </style>
+
+</head>
+<body>
+<div id="preview-container">
+  <img alt="preview">
+</div>
+
+<div id="main-container" class="container-fluid">
+  <div id="header" class="row align-items-center" style="height: 4rem; box-shadow: 0 2px 4px rgba(255,234,0,0.21)">
+      <h4 style="position: absolute;color:deeppink; right: 1rem">my art</h4>
+      <h4 style="position: absolute;color: green; left: 1rem">about</h4>
+  </div>
+  <div id="gallery" class="row">
+    <div class="col-12 col-sm-6">
+      <div class="row bg-dark" style="height: 200px">
+        <img src="img2.jpg" alt="">
+      </div>
+      <div class="row bg-success" style="height: 300px">
+        <img src="img3.jpg" alt="">
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="row bg-warning" style="height: 200px">
+
+        <img src="img5.jpg" alt="">
+      </div>
+      <div class="row bg-primary" style="height: 300px">
+        <img src="img4.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <div id="about-row" class="row vh-100 justify-content-center">
+    <div id="about-col" class="col-12 col-md-6 text-center my-5 pb-5">
+      <h2 class="my-4">About</h2>
+      <img src="img1.jpg" style="width: 300px;max-width: 100%">
+      <p class="w-100  my-4 mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur dolores earum explicabo facilis, illo, in labore molestias mollitia optio quibusdam quos repudiandae similique suscipit, temporibus ullam vitae voluptatem voluptatum.</p>
+      <form id="contact-form" class="form w-100 my-4 mx-auto">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" class="form-control" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <input id="message" class="form-control" name="message">
+        </div>
+
+        <button type="button" class="btn btn-outline-dark w-300" onclick="sendContactForm()">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#gallery img').click(function (){
+    $('#preview-container img').attr('src', this.src)
+    $('#preview-container').fadeIn().css('display','flex');
+    $(document.body).css('overflow', 'hidden')
+  })
+
+  $('#preview-container').click(function (){
+    $('#preview-container').fadeOut();
+    $(document.body).css('overflow', 'auto')
+  });
+</script>
+
+<script>
+  function sendContactForm(){
+    $.post('http://ma-web.ir/maktab52/quiz2.php',$('#contact-form').serialize(), function (data){
+      console.log(data)
+      alert(data.msg);
+      });
+  }
+</script>
+
+</body>
+</html>
